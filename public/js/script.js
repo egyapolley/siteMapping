@@ -47,6 +47,7 @@ $(function () {
                 .done(function (data) {
 
                     const location = data.loc;
+                    const networkStatus =data.netstatus;
 
                     if (data.status === 0) {
                         const site_info = data.site;
@@ -58,7 +59,7 @@ $(function () {
                                     values = `<td>Location</td><td>${location}</td>`;
                                     break;
                                 case 1:
-                                    values = `<td>Network Coverage</td><td>EXCELLENT</td>`;
+                                    values = `<td>Network Coverage</td><td>${networkStatus}</td>`;
                                     break;
 
                                 case 2:
@@ -92,7 +93,7 @@ $(function () {
                                     values = `<td>Location</td><td>${location}</td>`;
                                     break;
                                 case 1:
-                                    values = `<td>Network Coverage</td><td>Not AVAILABLE</td>`;
+                                    values = `<td>Network Coverage</td><td>POOR</td>`;
                                     break;
 
                                 case 2:
