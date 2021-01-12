@@ -1,0 +1,62 @@
+
+<div class="container">
+    <div class="form-container">
+        <h3>Check Network Availability</h3>
+            <div class="form-group">
+
+                <div class="form-control">
+                    <label class="radiolabel"><input type="radio" name="address-type" id="gh-post" class="address-type" >&nbsp;Use GhanaPost Code</label>
+                </div>
+
+                <div class="form-control">
+                    <label class="radiolabel"><input type="radio" name="address-type" id="latlong" class="address-type" >&nbsp;Specify Lat Long Coordinate</label>
+
+                </div>
+
+                <div class="form-dynamic-content">
+
+                    <div class="form-content gh-post">
+                        <form action="" id="gh-post-form">
+                            <div class="form-control">
+                                <input type="text" placeholder="Enter GhanaPost code ..." id="ghanapost-code" required>
+                            </div>
+                            <div class="form-control-btn">
+                                <button type="Submit" class="btn">Submit</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                    <div class="form-content latlong">
+                        <form action="" id="latlong-form">
+                            <div class="form-control">
+                                <label for="lat">Latitude:</label>
+                                <input type="text" id="lat" placeholder="Enter latitude 5.58535..." required>
+                            </div>
+                            <div class="form-control">
+                                <label for="long">Longitude:</label>
+                                <input type="text" id="long" placeholder="Enter longitude -0.2345..." required>
+                            </div>
+
+                            <div class="form-control-btn">
+                                <button type="Submit" class="btn">Submit</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="table">
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
