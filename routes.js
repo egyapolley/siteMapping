@@ -38,7 +38,7 @@ router.post("/api/network", async (req, res) => {
 
                  latitude =parseFloat(lat).toFixed(7);
                  longitude =parseFloat(long).toFixed(7);
-                 getSiteDetails(latitude, longitude,res, area)
+                 getSiteDetailsDistance(latitude, longitude,res, area)
 
              }else {
                  res.json({
@@ -47,10 +47,6 @@ router.post("/api/network", async (req, res) => {
                  })
 
              }
-
-
-
-
 
          }).catch(error =>{
              console.log(error);
@@ -64,7 +60,7 @@ router.post("/api/network", async (req, res) => {
      } else {
          latitude = parseFloat(lat);
          longitude = parseFloat(long);
-         await getSiteDetails(latitude, longitude, res)
+         await getSiteDetailsDistance(latitude, longitude, res)
 
      }
 
@@ -86,10 +82,75 @@ router.post("/api/network", async (req, res) => {
 
 })
 
+router.post("/api/distance", async (req, res) =>{
+
+try {
+    let {latitude, longitude} = req.body;
+    latitude = parseFloat(latitude);
+    longitude= parseFloat(longitude);
+
+    let site = await Sites.aggregate([{
+        $geoNear: {
+            near: { type: "Point", coordinates: [ longitude , latitude ] },
+            distanceField: "dist.calculated",
+            spherical: true
+        },
+
+
+    }, { $limit: 1 }]);
+
+    const {site_id, name:site_name, status:site_status} = site[0];
+    const distance = Math.round(parseFloat(site[0].dist.calculated));
+    let networkCoverage;
+    if (distance <= 500){
+        networkCoverage="EXCELLENT";
+    } else if (distance <=700){
+        networkCoverage ="VERY GOOD";
+
+    }else if (distance <= 1000){
+        networkCoverage ="GOOD";
+
+    }else if (distance <= 1200){
+        networkCoverage ="FAIR";
+    }else {
+        networkCoverage ="POOR";
+
+    }
 
 
 
-async function getSiteDetails(latitude, longitude, res, area) {
+    res.json({
+        loc: `${latitude}, ${longitude}`,
+        netstatus: networkCoverage,
+        status: 0,
+        message: "success",
+        distance:(distance/1000).toFixed(3),
+        site: {
+            name:site_name,
+            status:site_status,
+            site_id
+        }
+
+    })
+
+
+    //res.json(site)
+
+}catch (error){
+    console.log(error);
+    res.json({error:0})
+}
+
+
+
+
+
+})
+
+
+
+
+/*async function getSiteDetails(latitude, longitude, res, area) {
     let [d500, d700, d1000, d1200] = [500, 700, 1000, 1200]
 
 
@@ -176,7 +237,74 @@ async function getSiteDetails(latitude, longitude, res, area) {
         })
     }
 
+}*/
+
+async function getSiteDetailsDistance(latitude, longitude, res, area) {
+
+    try {
+
+        latitude = parseFloat(latitude);
+        longitude =parseFloat(longitude);
+
+        let site = await Sites.aggregate([{
+            $geoNear: {
+                near: { type: "Point", coordinates: [ longitude , latitude ] },
+                distanceField: "dist.calculated",
+                spherical: true
+            },
+
+
+        }, { $limit: 1 }]);
+
+        const {site_id, name:site_name, status:site_status} = site[0];
+        const distance = Math.round(parseFloat(site[0].dist.calculated));
+        let networkCoverage;
+        if (distance <= 500){
+            networkCoverage="EXCELLENT";
+        } else if (distance <=700){
+            networkCoverage ="VERY GOOD";
+
+        }else if (distance <= 1000){
+            networkCoverage ="GOOD";
+
+        }else if (distance <= 1200){
+            networkCoverage ="FAIR";
+        }else {
+            networkCoverage ="POOR";
+
+        }
+
+        res.json({
+            loc: `${latitude}, ${longitude}`,
+            area,
+            netstatus: networkCoverage,
+            status: 0,
+            message: "success",
+            distance:(distance/1000).toFixed(3),
+            site: {
+                name:site_name,
+                status:site_status,
+                site_id
+            }
+
+        })
+
+    }catch (error){
+        console.log(error);
+        res.json({
+            error:"error",
+            message:`System Failure: Please contact SysAdmin`
+        })
+
+
+    }
+
+
+
+
 }
+
+
 
 
 module.exports = router;
