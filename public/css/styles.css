@@ -193,7 +193,7 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 10px 0;
     flex-wrap: wrap;
 
 }
@@ -205,6 +205,12 @@ td {
     justify-content: center;
     margin: 10px 50px;
     flex-wrap: wrap;
+   /* border: 2px solid #CCC;*/
+    padding: 10px;
+    /*border-radius: 10px;*/
+    box-shadow:5px 5px 5px rgba(0,0,0,0.8);
+
+
 }
 
 img {
