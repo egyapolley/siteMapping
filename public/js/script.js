@@ -78,7 +78,9 @@ $(function () {
                                 spanNetworkCov.className = "bold green";
                                 break;
                             case "POOR":
+                            case "NO COVERAGE":
                                 spanNetworkCov.className = "bold red";
+                                break;
                         }
 
                         spanSiteStatus.className = site_status === "online" ? "bold green" : "bold red";
@@ -150,7 +152,9 @@ $(function () {
                                 spanNetworkCov.className = "bold green";
                                 break;
                             case "POOR":
+                            case "NO COVERAGE":
                                 spanNetworkCov.className = "bold red";
+                                break;
                         }
 
                         spanSiteStatus.className = site_status === "online" ? "bold green" : "bold red";

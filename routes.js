@@ -256,7 +256,7 @@ async function getSiteDetailsDistance(latitude, longitude, res, area) {
 
         }, { $limit: 1 }]);
 
-        const {site_id, name:site_name, status:site_status} = site[0];
+        let {site_id, name:site_name, status:site_status} = site[0];
         const distance = Math.round(parseFloat(site[0].dist.calculated));
         let networkCoverage;
         if (distance <= 500){
@@ -269,9 +269,14 @@ async function getSiteDetailsDistance(latitude, longitude, res, area) {
 
         }else if (distance <= 1200){
             networkCoverage ="FAIR";
-        }else {
+        } else if (distance <= 1500) {
             networkCoverage ="POOR";
 
+        }else {
+            networkCoverage ="NO COVERAGE";
+            site_name="";
+            site_id="";
+            site_status=""
         }
 
         res.json({
