@@ -49,6 +49,8 @@ $(function () {
     if (latlongForm) {
         latlongForm.addEventListener("submit", function (event) {
             event.preventDefault();
+            const progressIndicator = document.getElementById("progressIndicatorlat");
+            progressIndicator.style.display = "block"
             errorBox.style.display = "none";
             const lat = document.getElementById("lat").value;
             const long = document.getElementById("long").value;
@@ -58,10 +60,10 @@ $(function () {
                 long
             };
 
-            $.post("/api/network", postData)
+            $.post("/coverage-checker/api/network", postData)
                 .done(function (data) {
+                    progressIndicator.style.display = "none"
 
-                    console.log(data)
 
                     if (data.status ===0) {
                         const location = data.loc;
@@ -102,6 +104,7 @@ $(function () {
 
 
                 }).fail(function (error) {
+                progressIndicator.style.display = "none"
                 errorMessage.innerHTML = "No Network. Please check internet connection and try again";
                 errorBox.style.display = "block";
                 newContainer.style.display = "none";
@@ -128,9 +131,8 @@ $(function () {
 
             };
 
-            $.post("/api/network", postData)
+            $.post("/coverage-checker/api/network", postData)
                 .done(function (data) {
-                    console.log(data)
                     progressIndicator.style.display = "none"
 
 
@@ -179,6 +181,7 @@ $(function () {
 
 
                 }).fail(function (error) {
+                progressIndicator.style.display = "none"
                 errorMessage.innerHTML = "No Network. Please check internet connection and try again";
                 errorBox.style.display = "block";
                 newContainer.style.display = "none";

@@ -37,13 +37,13 @@ if (process.env.NODE_ENV === "development"){
     app.use(require("morgan")("tiny"));
 }
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(express.static("public"))
+app.use("/coverage-checker", express.static(path.join(__dirname,"public")))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.engine("hbs", handlebars.engine);
 app.set("view engine", "hbs");
 
-app.use(Router)
+app.use("/coverage-checker", Router)
 
 let PORT = process.env.PORT||5500;
 

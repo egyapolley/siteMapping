@@ -4,6 +4,8 @@ const axios = require("axios");
 const router = express.Router();
 const Sites = require("./models/geodata")
 
+const validator = require("./validators");
+
 
 router.get("/", async (req, res) => {
     res.render("index")
@@ -18,6 +20,17 @@ router.post("/api/network", async (req, res) => {
      if (type === "ghanapost") {
          ghpost = ghpost.toString().trim().replace(/[-\s]/g,"").toUpperCase();
          console.log(ghpost)
+
+         const {error} = validator.validateGHPost({ghpost});
+         if (error){
+             return res.json({
+                 error:"error",
+                 message:`${error.message}`
+             })
+
+         }
+
+
          const url ="https://api.ghanapostgps.com/v2/PublicGPGPSAPI.aspx"
          axios.post(url,null, {
              auth:{
@@ -58,6 +71,15 @@ router.post("/api/network", async (req, res) => {
 
 
      } else {
+
+         const {error} = validator.validateLatLong({lat, long});
+         if (error){
+             return res.json({
+                 error:"error",
+                 message:`${error.message}`
+             })
+
+         }
          latitude = parseFloat(lat);
          longitude = parseFloat(long);
          await getSiteDetailsDistance(latitude, longitude, res)

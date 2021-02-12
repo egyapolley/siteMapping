@@ -23,10 +23,10 @@
                     <div class="form-content gh-post">
                         <form action="" id="gh-post-form">
                             <div class="form-control">
-                                <input type="text" placeholder="Enter GhanaPost code ..." id="ghanapost-code" required>
+                                <input type="text" placeholder="Enter GhanaPost code ..." id="ghanapost-code" required maxlength="13">
                             </div>
-                            <div id="progressIndicator" class="progressIndicator">
-                                <img src="/images/ajax-loader.gif" alt="Loading ...">
+                            <div id="progressIndicatorlat" class="progressIndicator">
+                                <img src="/coverage-checker/images/ajax-loader.gif" alt="Loading ...">
                             </div>
                             <div class="form-control-btn">
                                 <button type="Submit" class="btn">Submit</button>
@@ -40,11 +40,15 @@
                         <form action="" id="latlong-form">
                             <div class="form-control">
                                 <label for="lat">Latitude:</label>
-                                <input type="text" id="lat" placeholder="Enter latitude 5.58535..." required>
+                                <input type="text" id="lat" placeholder="Enter latitude 5.58535..." required maxlength="20">
                             </div>
                             <div class="form-control">
                                 <label for="long">Longitude:</label>
-                                <input type="text" id="long" placeholder="Enter longitude -0.2345..." required>
+                                <input type="text" id="long" placeholder="Enter longitude -0.2345..." required maxlength="20">
+                            </div>
+
+                            <div id="progressIndicator" class="progressIndicator">
+                                <img src="/coverage-checker/images/ajax-loader.gif" alt="Loading ...">
                             </div>
 
                             <div class="form-control-btn">
@@ -70,7 +74,7 @@
         <div class="row-1 row">
             <div class="box-loc box">
                 <div class="image-container">
-                    <img src="/images/map.png" alt="">
+                    <img src="/coverage-checker/images/map.png" alt="">
                 </div>
 
                 <span class="btn-padding">Your Location is:</span>
