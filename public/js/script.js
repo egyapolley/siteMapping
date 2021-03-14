@@ -244,19 +244,25 @@ $(function () {
 
             $.post("/coverage-checker/api/message", postBody)
                 .done(function (data) {
-                    callBtn.innerText="SEND"
-                    callBtn.style.background="deeppink";
-                    callBtn.style.pointerEvents="auto"
-
+                    
                     if (data.status ==="success" ) {
-                        window.location.href ="/coverage-checker/contact-us-success"
+                        window.location.href ="/coverage-checker/contact-us-success";
+                        callBtn.innerText="SEND"
+                        callBtn.style.background="deeppink";
+                        callBtn.style.pointerEvents="auto"
 
                     } else if (data.error) {
+                        callBtn.innerText="SEND"
+                        callBtn.style.background="deeppink";
+                        callBtn.style.pointerEvents="auto"
                         messageText.innerText =data.message.toString()
                         messageBox.style.display="block"
                     }
 
                 }).fail(function (error) {
+                callBtn.innerText="SEND"
+                callBtn.style.background="deeppink";
+                callBtn.style.pointerEvents="auto"
                 messageText.innerText ="Please check your internet connection"
                 callBtn.innerText="SEND"
                 callBtn.style.background="deeppink"
