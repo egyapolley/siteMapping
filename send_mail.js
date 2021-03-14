@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 
-module.exports = (data, res) => {
+module.exports = (data) => {
     const {name, email, contact, message} = data
 
     let transporter;

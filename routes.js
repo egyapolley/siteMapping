@@ -40,7 +40,8 @@ router.post("/api/message", async (req, res) => {
             name, email, contact, message
         })
         await callBackMessage.save();
-        sendMail({name, email, contact, message},res)
+        res.json({status:"success"})
+        sendMail({name, email, contact, message})
     } catch (ex) {
         console.log(ex)
         return res.json({
