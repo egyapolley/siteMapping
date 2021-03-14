@@ -12,6 +12,8 @@ $(function () {
     const spanLocArea = document.getElementById("span-loc-area");
 
     const newContainer = document.getElementById("new-container");
+    const contentContainer = document.getElementById("content-container")
+    const infoContainer = document.getElementById("info-container")
 
     const errorBox = document.getElementById("error-box");
     const errorMessage = document.querySelector("#error-box small")
@@ -38,6 +40,8 @@ $(function () {
 
 
                 newContainer.style.display="none";
+                infoContainer.style.display="none";
+                contentContainer.style.display = "none";
 
             })
 
@@ -95,11 +99,16 @@ $(function () {
                         spanSiteID.textContent = site_id;
                         spanSiteStatus.textContent = site_status === "online" ? "IN-SERVICE" : "OUT-OF-SERVICE";
                         newContainer.style.display = "flex";
+                        infoContainer.style.display=site_status==="online"?"flex":"none";
+                        contentContainer.style.display="flex";
+                        contentContainer.scrollIntoView();
 
                     }  else if (data.error) {
                         errorMessage.innerHTML = data.message.toString();
                         errorBox.style.display = "block";
                         newContainer.style.display="none"
+                        infoContainer.style.display="none";
+                        contentContainer.style.display = "none";
                     }
 
 
@@ -107,7 +116,9 @@ $(function () {
                 progressIndicator.style.display = "none"
                 errorMessage.innerHTML = "No Network. Please check internet connection and try again";
                 errorBox.style.display = "block";
-                newContainer.style.display = "none";
+                newContainer.style.display="none"
+                infoContainer.style.display="none";
+                contentContainer.style.display = "none";
 
 
 
@@ -169,12 +180,17 @@ $(function () {
                         spanSiteID.textContent = site_id;
                         spanSiteStatus.textContent = site_status === "online" ? "IN-SERVICE" : "OUT-OF-SERVICE";
                         newContainer.style.display = "flex";
+                        infoContainer.style.display=site_status==="online"?"flex":"none";
+                        contentContainer.style.display="flex";
+                        contentContainer.scrollIntoView();
 
 
                     } else if (data.error) {
                         errorMessage.innerHTML = data.message.toString();
                         errorBox.style.display = "block";
                         newContainer.style.display = "none";
+                        infoContainer.style.display="none";
+                        contentContainer.style.display = "none";
 
 
                     }
@@ -185,6 +201,8 @@ $(function () {
                 errorMessage.innerHTML = "No Network. Please check internet connection and try again";
                 errorBox.style.display = "block";
                 newContainer.style.display = "none";
+                infoContainer.style.display="none";
+                contentContainer.style.display = "none";
 
 
             })
@@ -202,6 +220,54 @@ $(function () {
 
         })
     }
+
+
+    const requestCallBackForm = document.getElementById("request-callback");
+    const messageBox = document.getElementById("message-box");
+    const messageText = document.getElementById("message-error");
+    const callBtn = document.getElementById("callback-btn")
+    if (requestCallBackForm){
+        requestCallBackForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            callBtn.innerText="Please Wait ....."
+            callBtn.style.background="#424242"
+            callBtn.style.pointerEvents="none";
+            messageBox.style.display="none"
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const contact=document.getElementById("contact").value;
+            const message = document.getElementById("message").value;
+
+            const postBody = {name,email,contact,message};
+
+            $.post("/coverage-checker/api/message", postBody)
+                .done(function (data) {
+                    callBtn.innerText="SEND"
+                    callBtn.style.background="deeppink";
+                    callBtn.style.pointerEvents="auto"
+
+                    if (data.status ==="success" ) {
+                        window.location.href ="/coverage-checker/contact-us-success"
+
+                    } else if (data.error) {
+                        messageText.innerText =data.message.toString()
+                        messageBox.style.display="block"
+                    }
+
+                }).fail(function (error) {
+                messageText.innerText ="Please check your internet connection"
+                callBtn.innerText="SEND"
+                callBtn.style.background="deeppink"
+                callBtn.style.pointerEvents="auto"
+                messageBox.style.display="block"
+            })
+
+
+        })
+    }
+
 
 
 })

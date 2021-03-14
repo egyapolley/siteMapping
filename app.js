@@ -45,7 +45,7 @@ app.set("view engine", "hbs");
 
 app.use("/coverage-checker", Router)
 
-let PORT = process.env.PORT||5500;
+let PORT = process.env.PORT||2000;
 
 let HOST = process.env.PROD_HOST;
 if (process.env.NODE_ENV === "development"){
@@ -54,5 +54,5 @@ if (process.env.NODE_ENV === "development"){
 
 
 app.listen(PORT,() =>{
-    console.log(`Server running in ${process.env.NODE_ENV} on url : http://${HOST}:${PORT}`)
+    console.log(`Server running in ${process.env.NODE_ENV} on url : http://${HOST}:${PORT}/coverage-checker`)
 } )

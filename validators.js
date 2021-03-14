@@ -30,7 +30,41 @@ module.exports = {
             return schema.validate(body)
 
 
-        }
+        },
+
+    validateMessage: (body) => {
+
+        const schema = Joi.object({
+            name: Joi.string()
+                .max(400)
+                .trim()
+                .label("Name")
+                .required(),
+
+            email:Joi.string()
+                .email()
+                .max(400)
+                .trim()
+                .label("Email")
+                .required(),
+
+            contact:Joi.string()
+                .max(400)
+                .trim()
+                .label("Phone Contact")
+                .required(),
+
+            message: Joi.string()
+                .max(500)
+                .trim()
+                .label("Message")
+                .required(),
+        });
+
+        return schema.validate(body)
+
+
+    }
 
 
 }

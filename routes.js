@@ -3,8 +3,11 @@ const axios = require("axios");
 
 const router = express.Router();
 const Sites = require("./models/geodata")
+const CallBackMessage = require("./models/callback-request")
 
 const validator = require("./validators");
+
+const sendMail = require("./send_mail");
 
 
 router.get("/", async (req, res) => {
@@ -12,7 +15,45 @@ router.get("/", async (req, res) => {
 
 });
 
+router.get("/contact-us", async (req, res) => {
+    res.render("request-callback")
 
+})
+router.get("/contact-us-success", async (req, res) => {
+    res.render("success-contact-us")
+})
+
+router.post("/api/message", async (req, res) => {
+    const {error} = validator.validateMessage(req.body);
+    console.log(error)
+    if (error){
+        return res.json({
+            error:"error",
+            message:`${error.message}`
+        })
+
+    }
+    const {name, email, contact, message} = req.body
+
+    try {
+        const callBackMessage = new CallBackMessage({
+            name, email, contact, message
+        })
+        await callBackMessage.save();
+        sendMail({name, email, contact, message},res)
+    } catch (ex) {
+        console.log(ex)
+        return res.json({
+            error:"error",
+            message:`System Error.Please try again later`
+        })
+    }
+
+
+
+
+
+})
 router.post("/api/network", async (req, res) => {
  try {
      let {type, ghpost, lat, long} = req.body;
@@ -29,7 +70,6 @@ router.post("/api/network", async (req, res) => {
              })
 
          }
-
 
          const url ="https://api.ghanapostgps.com/v2/PublicGPGPSAPI.aspx"
          axios.post(url,null, {

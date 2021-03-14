@@ -1,5 +1,10 @@
 
 <div class="container">
+    <div class="logo">
+        <div class="logo-wrapper">
+            <img src="/coverage-checker/images/surfline_logo.png" alt="Logo">
+        </div>
+    </div>
     <div class="form-container">
         <h3>Check Network Availability</h3>
             <div class="form-group">
@@ -11,6 +16,7 @@
 
                 <div class="form-control">
                     <label class="radiolabel"><input type="radio" name="address-type" id="gh-post" class="address-type" >&nbsp;Use GhanaPost Code</label>
+                    <button type="button" class="getGHpost-btn"><a target="_blank" href="https://www.ghanapostgps.com/map/">Get your GhanaPost Code</a></button>
                 </div>
 
                 <div class="form-control">
@@ -70,49 +76,57 @@
 
             </div>
     </div>
-    <div class="new-container" id="new-container">
-        <div class="row-1 row">
-            <div class="box-loc box">
-                <div class="image-container">
-                    <img src="/coverage-checker/images/map.png" alt="">
-                </div>
+   <div class="content-container" id="content-container">
+       <div class="new-container" id="new-container">
+           <div class="row-1 row">
+               <div class="box-loc box">
+                   <div class="image-container">
+                       <img src="/coverage-checker/images/map.png" alt="">
+                   </div>
 
-                <span class="btn-padding">Your Location is:</span>
-                <span class="bold" id="span-loc-area"></span>
-                <span class="bold" id="span-loc-latlong"></span>
+                   <span class="btn-padding">Your Location is:</span>
+                   <span class="bold" id="span-loc-area"></span>
+                   <span class="bold" id="span-loc-latlong"></span>
 
-            </div>
-            <div class="box-dist box">
-                <i class="fas fa-exchange-alt fa-2x"></i>
-                <span class="btn-padding">Distance from Nearest Site:</span>
-                <span class="bold" id="span-distance"></span>
-            </div>
+               </div>
+               <div class="box-dist box">
+                   <i class="fas fa-exchange-alt fa-2x"></i>
+                   <span class="btn-padding">Distance from Nearest Site:</span>
+                   <span class="bold" id="span-distance"></span>
+               </div>
 
-        </div>
-        <div class="row-2 row">
-            <div class="box-netcov box">
-                <i class="fas fa-signal fa-2x"></i>
-                <span class="btn-padding">Your Network Coverage is:</span>
-                <span class="bold" id="span-network-conv"></span>
-            </div>
+           </div>
+           <div class="row-2 row">
+               <div class="box-netcov box">
+                   <i class="fas fa-signal fa-2x"></i>
+                   <span class="btn-padding">Your Network Coverage is:</span>
+                   <span class="bold" id="span-network-conv"></span>
+               </div>
 
-        </div>
-        <div class="row-3 row">
-            <div class="box-site-status box">
-                <i class="fas fa-broadcast-tower fa-2x"></i>
-                <span class="btn-padding">You are served by Site (name & ID):</span>
-                <span class="bold" id="span-site-name"></span>
-                <span class="bold" id="span-site-id"></span>
+           </div>
+           <div class="row-3 row">
+               <div class="box-site-status box">
+                   <i class="fas fa-broadcast-tower fa-2x"></i>
+                   <span class="btn-padding">You are served by Site (name & ID):</span>
+                   <span class="bold" id="span-site-name"></span>
+                   <span class="bold" id="span-site-id"></span>
 
-            </div>
-            <div class="box-site-info box">
-                <i class="fas fa-battery-half fa-2x"></i>
-                <span class="btn-padding">Your Site's Current Status:</span>
-                <span class="bold" id="span-site-status"></span>
+               </div>
+               <div class="box-site-info box">
+                   <i class="fas fa-battery-half fa-2x"></i>
+                   <span class="btn-padding">Your Site's Current Status:</span>
+                   <span class="bold" id="span-site-status"></span>
 
-            </div>
+               </div>
 
 
-        </div>
-    </div>
+           </div>
+       </div>
+       <div class="info-container" id="info-container">
+           <button type="button" class="btn"><a target="_blank" href="https://digistoreafrica.com/gh/surfline">Buy or rent a device</a></button>
+           <button type="button" class="btn"><a target="_blank" href="https://www.surflinegh.com/our-shops">Locate a shop</a></button>
+           <button type="button" class="btn"><a target="_blank" href="/coverage-checker/contact-us">Request call back</a></button>
+
+       </div>
+   </div>
 </div>
