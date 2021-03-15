@@ -352,7 +352,7 @@ img {
     align-self: flex-end;
 }
 
-.info-container .btn {
+.info-container .btn-links {
     width: 100%;
 }
 
@@ -495,6 +495,7 @@ img {
 .links {
     display: inline-block;
     padding: 8px 40px;
+    width: 100%;
 }
 
 .btn-links {
