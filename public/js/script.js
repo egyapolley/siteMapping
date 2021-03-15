@@ -244,7 +244,7 @@ $(function () {
 
             $.post("/coverage-checker/api/message", postBody)
                 .done(function (data) {
-                    
+
                     if (data.status ==="success" ) {
                         window.location.href ="/coverage-checker/contact-us-success";
                         callBtn.innerText="SEND"

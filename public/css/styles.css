@@ -492,5 +492,29 @@ img {
 
 }
 
+.links {
+    display: inline-block;
+    padding: 8px 40px;
+}
+
+.btn-links {
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bolder;
+    background: deeppink;
+    color: white;
+    font-family: inherit;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.btn-links:hover{
+    background: white;
+    color: black;
+    box-shadow: 0 0 2px 5px #999191;
+}
+
 
 

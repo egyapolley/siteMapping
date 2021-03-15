@@ -6,7 +6,7 @@ module.exports = (data) => {
 
     let transporter;
     let from;
-    const to = "spolley@surflinegh.com";
+    const to = "JMallet@surflinegh.com";
 
     if (process.env.NODE_ENV === "development") {
         transporter = nodemailer.createTransport({
