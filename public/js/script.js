@@ -248,12 +248,12 @@ $(function () {
                     if (data.status ==="success" ) {
                         window.location.href ="/coverage-checker/contact-us-success";
                         callBtn.innerText="SEND"
-                        callBtn.style.background="deeppink";
+                        callBtn.style.background="#0245A3";
                         callBtn.style.pointerEvents="auto"
 
                     } else if (data.error) {
                         callBtn.innerText="SEND"
-                        callBtn.style.background="deeppink";
+                        callBtn.style.background="#0245A3";
                         callBtn.style.pointerEvents="auto"
                         messageText.innerText =data.message.toString()
                         messageBox.style.display="block"
@@ -261,12 +261,9 @@ $(function () {
 
                 }).fail(function (error) {
                 callBtn.innerText="SEND"
-                callBtn.style.background="deeppink";
+                callBtn.style.background="#0245A3";
                 callBtn.style.pointerEvents="auto"
                 messageText.innerText ="Please check your internet connection"
-                callBtn.innerText="SEND"
-                callBtn.style.background="deeppink"
-                callBtn.style.pointerEvents="auto"
                 messageBox.style.display="block"
             })
 
