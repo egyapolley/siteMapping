@@ -1,0 +1,132 @@
+
+<div class="container">
+    <div class="logo">
+        <div class="logo-wrapper">
+            <img src="/coverage-checker/images/surfline_logo.png" alt="Logo">
+        </div>
+    </div>
+    <div class="form-container">
+        <h3>Check Your Surfline Network Availability</h3>
+            <div class="form-group">
+                <div class="error-box" id="error-box">
+                    <button id="times-button-error" class="times-button">&times;</button>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <small></small>
+                </div>
+
+                <div class="form-control">
+                    <label class="radiolabel"><input type="radio" name="address-type" id="gh-post"  class="address-type" >&nbsp;Use GhanaPost Code</label>
+                    <button type="button" class="getGHpost-btn"><a class="links" target="_blank" href="https://www.ghanapostgps.com/map/">Get your GhanaPost Code</a></button>
+                </div>
+
+                <div class="form-control">
+                    <label class="radiolabel"><input type="radio" name="address-type" id="latlong" class="address-type" >&nbsp;Specify Lat Long Coordinate</label>
+
+                </div>
+
+                <div class="form-dynamic-content">
+
+                    <div class="form-content gh-post">
+                        <form action="" id="gh-post-form">
+                            <div class="form-control">
+                                <input type="text" placeholder="Enter GhanaPost code ..." id="ghanapost-code" required maxlength="13">
+                            </div>
+                            <div id="progressIndicator" class="progressIndicator">
+                                <img src="/coverage-checker/images/ajax-loader.gif" alt="Loading ...">
+                            </div>
+                            <div class="form-control-btn">
+                                <button type="Submit" class="btn">Submit</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                    <div class="form-content latlong">
+                        <form action="" id="latlong-form">
+                            <div class="form-control">
+                                <label for="lat">Latitude:</label>
+                                <input type="text" id="lat" placeholder="Enter latitude 5.58535..." required maxlength="20">
+                            </div>
+                            <div class="form-control">
+                                <label for="long">Longitude:</label>
+                                <input type="text" id="long" placeholder="Enter longitude -0.2345..." required maxlength="20">
+                            </div>
+
+                            <div id="progressIndicatorlat" class="progressIndicator">
+                                <img src="/coverage-checker/images/ajax-loader.gif" alt="Loading ...">
+                            </div>
+
+                            <div class="form-control-btn">
+                                <button type="Submit" class="btn">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="table">
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+    </div>
+   <div class="content-container" id="content-container">
+       <div class="new-container" id="new-container">
+           <div class="row-1 row">
+               <div class="box-loc box">
+                   <div class="image-container">
+                       <img src="/coverage-checker/images/map.png" alt="">
+                   </div>
+
+                   <span class="btn-padding">Your Location is:</span>
+                   <span class="bold" id="span-loc-area"></span>
+                   <span class="bold" id="span-loc-latlong"></span>
+
+               </div>
+               <div class="box-dist box">
+                   <i class="fas fa-exchange-alt fa-2x"></i>
+                   <span class="btn-padding">Distance from Nearest Site:</span>
+                   <span class="bold" id="span-distance"></span>
+               </div>
+
+           </div>
+           <div class="row-2 row">
+               <div class="box-netcov box">
+                   <i class="fas fa-signal fa-2x"></i>
+                   <span class="btn-padding">Your Network Coverage is:</span>
+                   <span class="bold" id="span-network-conv"></span>
+               </div>
+
+           </div>
+           <div class="row-3 row">
+               <div class="box-site-status box">
+                   <i class="fas fa-broadcast-tower fa-2x"></i>
+                   <span class="btn-padding">You are served by Site (name & ID):</span>
+                   <span class="bold" id="span-site-name"></span>
+                   <span class="bold" id="span-site-id"></span>
+
+               </div>
+               <div class="box-site-info box">
+                   <i class="fas fa-battery-half fa-2x"></i>
+                   <span class="btn-padding">Your Site's Current Status:</span>
+                   <span class="bold" id="span-site-status"></span>
+
+               </div>
+
+
+           </div>
+       </div>
+       <div class="info-container" id="info-container">
+           <button type="button" class="btn-links"><a class="links" target="_blank" href="https://digistoreafrica.com/gh/surfline">Buy or Test a device</a></button>
+           <button type="button" class="btn-links"><a  class="links" target="_blank" href="https://www.surflinegh.com/our-shops">Locate a shop</a></button>
+           <button type="button" class="btn-links"><a  class="links" target="_blank" href="/coverage-checker/contact-us">Request call back</a></button>
+
+       </div>
+   </div>
+</div>
